@@ -7,9 +7,9 @@ Registers or indexes in archives are typical examples: all the time people are t
 This app allows to verify the input process, by reading out loud the text such that one sees the scan fullscreen and there is a small control panel in a corner.
 
 To install download the files en subfolders.
-The app depends on the installation of the compiled Windows version of the eSpeak package (actually) on https://espeak.sourceforge.net/download.html. On the first call of the app you have to indicate the folder where espeak.exe is found. Usually espeak/command_line.
+The app depends on the installation of the compiled Windows version of the eSpeak package (actually) on https://espeak.sourceforge.net/download.html. On installation choose the language you need, Dutch is nl and nl-nl. On the first call of the app you have to indicate the folder where espeak.exe is found. Usually espeak/command_line.
 
-In de Voorbeeld folder you find an example in Dutch. The rules folder coniains some examples.
+In de Voorbeeld folder you find an complete example in Dutch. The rules folder contains some example rules.
 
 --------------------------------------------------------------------------------------------------------------------
 
