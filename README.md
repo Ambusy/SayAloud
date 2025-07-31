@@ -5,7 +5,11 @@ Suppose one has a task to transcribe text and store it in some organised form, e
 Registers or indexes in archives are typical examples: all the time people are transcribing scans to make the contents accessible online.
 
 This app allows to verify the input process, by reading out loud the text such that one sees the scan fullscreen and there is a small control panel in a corner.
-It depends on the installation of the compiled Windows version of the eSpeak package (actually) on https://espeak.sourceforge.net/download.html. 
+To install download the files en subfolders. 
+The app depends on the installation of the compiled Windows version of the eSpeak package (actually) on https://espeak.sourceforge.net/download.html. On the first call of the app you have to indicate the folder where espeak.exe is found. usually espeak/command_line.
+
+In de Voorbeeld folder you find an example in Dutch. The rules folder coniains some examples.
+
 
 
 This is how the program is instructed:
