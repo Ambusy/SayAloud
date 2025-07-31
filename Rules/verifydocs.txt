@@ -1,0 +1,104 @@
+# Verify Transcribed Documents
+An important step in the process of transcribing data contained in documents of archives like notary deeds, civil registration, etc. is the verification.
+Usually one person enters selected data from a document, like names, dates, subjects, etc. using an application that stores these data in a database.
+Another (or perhaps the same) person then retrieves the entries one by one and verifies them against the scans to see if there are any mistakes, and corrects them.
+
+This application helps the verification process, by allowing one to select the various registrated elements and speak them aloud, 
+adding fixed text to easily recognise an element and pauses to help the verifier to locate the element in the document.
+
+To use the program, you'll need to install eSpeak and browse to it's location at the first call.
+A compiled version of eSpeak can be obtained on espeak.sourceforge.net
+The language is noted in the program source, actually nl, but changable via the -lang option.
+
+A real world example in the archives world, for verifying historic data entered in an application that registers birth certificates from the Civil Registry.
+On a summary screen of the application in use we have all entered data (using select text, to copy data to clipboard).
+
+We have for each registration record:
+- record number, followed by a TAB.
+- the date of the record, format dd-mm-yyyy followed by a TAB.
+- name of the child, format lastname, forename(s)  followed by a TAB.
+- the birth date of the child, format dd-mm-yyyy followed by a TAB.
+- the sex of the child, m for male, v for female, blank for unknown/other followed by a TAB.
+- name of the father, format lastname, forename(s) or N.N. followed by a TAB.
+- name of the mother, format lastname, forename(s) followed by a TAB.
+- indicator, whether a jpg of the record is attached or not.
+ 
+This is an example of a part of the data. columns separated by TAB, names by a comma in last and first names:
+  
+    3 	08-03-1873 	Hospels, Maaijke 	    08-03-1873  v 	Hospels, Otto 	        Rooij, Elisabeth de 	  X
+  
+    4 	27-03-1873 	Gorkum, Adriaan van	    26-03-1873 	m 	N.N.                    Gorkum, Catharina van 	  X
+  
+    5 	14-04-1873 	Starkenburg, Elisabeth 	    13-04-1873 	v 	Starkenburg, Pieter 	Groenveld, Jacomina 	  X
+  
+
+I define the rule for the syntax of the line:
+
+actNumber 'TAB' actDateDay '-' actDateMonth '-' actDateYear 'TAB' childLastname ',' childFirstname 'TAB' childBirthDay '-' childBirthMonth '-' childBirthYear 'TAB' childSex 'TAB' fatherLastname ','/'.' fatherFirstname 'TAB' motherLastname ',' motherFirstname 'TAB' x 
+
+and use the specification for what to speak:
+
+"'act ' actNumber ' of ' :0actDateDay ' ' 
+:[01:january,02:february,03:march,04:april,05:may,06:june,07:july,08:august,09:september,10:october,11:november,12:december]actDateMonth 
+'PAUSE' 'born on ' :0childBirthDay :[01:january,02:february,03:march,04:april,05:may,06:june,07:july,08:august,09:september,10:october,11:november,12:december]childBirthMonth 
+'PAUSE' 'father ' fatherFirstname ' ' fatherLastname 
+'PAUSE' 'mother ' motherFirstname ' ' motherLastname 
+'PAUSE' 'child ' childFirstname ' ' :PchildLastname:fatherLastname 
+'PAUSE' :T:[v:female,m:male]childSex"
+
+This how to create the final rule that directs the application consists of 2 parts:
+- identification of the elements
+- sequence and way to speak these elements aloud
+  
+These 2 parts are added putting 1 space between them, and the result is written on the application's initial screen.
+
+Note that fatherLastname ','/'.' fatherFirstname 'TAB'
+will parse Hospels, Otto using the "," into 2 words "Hospels" and "Otto" 
+and will parse N.N. in 2 pieces using the "." in "N" and "N."
+The pronounciation rule will result in both cases in acceptable text.
+
+
+Identification:
+
+divide the input text in parts to pronounce and give each part an identifying name, as follows:
+  - first name the identifier        
+  - then, between single quotes, specify the string(s) that terminate the text for the part. 
+          for more than 1 terminator, separate them with a /
+          the word TAB will be treated as the single TAB character
+          the word PAUSE will insert a wait pause while speaking
+    
+Pronounciation:    
+
+Define the text to be spoken between double quotes in any combination, as follows:
+
+  - an identifier, if needed preceeded by modifiers. Modifiers are applied in order: T, 0, <, >, P, L, X, E, [], 9
+     - :0 -> remove leading zeroes from the identifier's text.
+             e.g. :0number
+     - :T -> remove leading and trailing spaces and/or tabs
+             e.g. :Ttext 
+     - :P -> remove the identifier's text and its preceeding literal, if the text is equal to the text of another identifier on this line.
+             put the :P modifier before the identifier. To substitute the text with another one, put _newtext after the identifier.
+             Finally put _otheridentifier after the identifier and its substituting text.
+             e.g. :Pname:orgername removes preceding literal and name, if it is equal to othername. :Pname_idem:othername. Speaks "idem" for name, if it is equal to othername. 
+     - :L -> remove the identifier's text and preceeding literal, if the text is equal to the text of the identifier on the preceeding text line.
+             To substitute the text with another one, put _newtext after the identifier. 
+             e.g. :Lname removes preceding literal and name, if it is equal to name on the previous line. :Lname_idem speaks "idem" for name, if it is equal to previous name. 
+     - :9n -> split numbers up in groups of n digits.
+              e.g. :92 splits 123456 in 12 34 56. :93 splits 123456 in 123 456. 
+		if :0 is in effect, each part will be affected by the 0-removal
+     - :X[translation]..... -> translate one or more parts of the text of the identifier to a new text. Each translation consists of [old_new]
+             If more than one "old -> new translation is specified, each translation will be applied to every occurrence of old in the text. 
+             Translated text will thus be subjected to further translations that may follow.
+             e.g. with option "blank ^", :X[._][^_^^]number in the text of identifier number, first translates . in empty (removes the .); secondly translates any space in double space. 
+                  Note that the speaker considers 1.234 as two numbers, not one, and sees 1 234 as one number but 1  234 as two.
+             or: :X[£_^pound^][$_^dollar^] to name the currency.
+     - :[code:translated,code:translated,.....] -> replace value of the text of the identifier (code) with a new text (translated).
+       e.g. :[f:female,m:male]sex
+     - :</head/ -> if text of the identifierstarts with "head", delete that "head" part. 	/ can be any character not present in "head"
+     - :>/tail/ -> if text of the identifier ends with "tail", delete that "tail" part      	  or tail 
+                   more heads or tails: are treated in the given order
+       e.g. :>/./word removes a dot at the end of word.
+     - :E -> remove the identifier's text and preceeding literal, if the (remaining) text is only blanks.
+       e.g. :Eword
+    
+  - a fixed text between single quotes

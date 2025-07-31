@@ -1,0 +1,4 @@
+reeks 'TAB' artikel 'TAB' regel 'TAB' gehucht 'TAB' sectieCode '-' sectieNr 'TAB' hyp 'TAB' soort 'TAB' gebeig 'TAB' grootte 'TAB' klasse 'TAB' 
+  kadInk 'TAB' aftrek 'TAB' jvrij 'TAB' ongeb1 'TAB' ongeb2 'TAB' x 'TAB' geb 'TAB' omsch 'TAB' sat 'TAB' uit 'TAB' naar 'TAB' x 
+"  regel ', ' :Lgehucht ', ' :LsectieCode ', ' :0sectieNr ', ' :Edeel ', ' :Eaktenr ', ' :Lsoort ', ' :Egebeig ', ' :E:0:92grootte ', ' :Eklasse ', ' :E:0:92ongeb1 ', ' :E:0:92ongeb2 ', ' :E:0:92geb ', ' 
+ jvrij '  ' :E:Lomsch_is  ', ' :E:X[^_^^]sat ', ' :X[^_^^]:Luit ', '  :X[^_^^]:Lnaar "

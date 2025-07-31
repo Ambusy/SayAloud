@@ -1,0 +1,14 @@
+-lang nl
+verwOrg 'TAB' plaats 'TAB' gehucht 'TAB' sectieCode '-' sectieNr 'TAB' deel 'TAB' aktenr 'TAB'
+namen 'TAB' voornamen 'TAB' beroep 'TAB' woonplaats 'TAB' artikelNummer 'TAB'
+opmerkingC 'TAB' soortEigendom 'TAB' volgnr 'TAB' grootte 'TAB' bijeen 'TAB'
+voorlKlas 'TAB' ongebKl1 'TAB' ongebKl2 'TAB' ongebKl3 'TAB' ongebKl4 'TAB' ongebKl5 'TAB' 
+gebouwd 'TAB' gebKl1 'TAB' gebKl2 'TAB' gebKl3 'TAB' gebKl4 'TAB' gebKl5 'TAB'
+bijeentrekking 'TAB' belastOngeb 'TAB' belastGeb 'TAB' verwSAT 'TAB' aanvang 'TAB' verDienstj 'TAB' x  //laatste stuk weg
+"
+'  ' :LartikelNummer_idem 
+'  ' :LsoortEigendom_idem 
+'  ' grootte 
+'  ' :Pgrootte_idem:bijeen 
+'  ' voorlKlas 
+"

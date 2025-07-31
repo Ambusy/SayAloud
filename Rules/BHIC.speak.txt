@@ -1,0 +1,12 @@
+-lang nl,verbose
+x 'TAB' actNumber 'TAB' actDateDay '-' actDateMonth '-' x 'TAB' 
+childLastname ',' childFirstname 'TAB' childBirthDay '-' childBirthMonth '-' x 'TAB' childSex 'TAB'  
+fatherLastname ','/'.' fatherFirstname 'TAB'  
+motherLastname ',' motherFirstname 'TAB' x
+"
+'akte ' actNumber ' van ' :0actDateDay ' ' :[01:januari,02:februari,03:maart,04:april,05:mei,06:juni,07:juli,08:augustus,09:september,10:oktober,11:november,12:december]actDateMonth 
+'PAUSE' 'geboren op ' :0childBirthDay ' ' :[01:januari,02:februari,03:maart,04:april,05:mei,06:juni,07:juli,08:augustus,09:september,10:oktober,11:november,12:december]childBirthMonth 
+'PAUSE' 'vader ' fatherFirstname ' ' fatherLastname 
+'PAUSE' 'moeder ' motherFirstname ' ' motherLastname 
+'PAUSE' 'kind ' :T:>| van|:>| van den|:>| van der|:>| van de|:>| de|childFirstname ' ' :PchildLastname:fatherLastname ' geslacht ' :T:[v:vrouw,m:man]childSex
+"

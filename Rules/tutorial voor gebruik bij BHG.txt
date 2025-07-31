@@ -1,0 +1,20 @@
+Open de online spreadsheet in de OAT folder, subfolder Ingevoerd.
+Open de scan van de OAT welke je wilt controleren in de OAT folder, subfolder Scans, zo groot als op het scherm past
+
+Start het leesprogramma SpeakText.exe.
+Windows 10 e.v. kent dit programma niet en dus klik je eenmalig op "meer informatie" en staat uitvoering toe.
+Al in jouw Windows .NET 8 nog niet aanwezig is, moet je die (laten) downloaden, anders werkt het niet.
+
+klik op "Soort controle" om aan te geven wat je wilt controleren van elke regel. Deze keuze blijft gelden, totdat je een andere kiest. 
+
+selecteer in de spreadsheet alle te controleren regels van de scan die je geselecteerd hebt, en copieer ze met Ctrl-C.
+Selecteer alleen hele regels dmv het regelnummer in de eerste kolom, selecteer dus geen kolommen.
+
+Maak de scan opnieuw zichtbaar op het scherm, en activeer het leesprogramma op de taakbalk. 
+het voorleesprogramma blijft altijd zichtbaar bovenop andere schermen. 
+Klik op "laden" om de gekopieerde tekst aan het programma aan te bieden.
+
+De (volgende) regel wordt nu uitgesproken; zie je fouten, wijzig dan de Excel. In het schermpje van het programma staan de gegevens om de onderhanden regel te kunnen identificeren.
+Steeds als er niet meer gesproken wordt, klik op Vlg
+
+Klaar met een scan: klik op Sluiten.
