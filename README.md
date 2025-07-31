@@ -31,8 +31,8 @@ Options for the execution may be specified, with a minus as first character on t
 - default is: -lang nl,blank .
 	
 
-The rules file must be found in the map, that contains the program as: anyname.speak.txt
-The program will ask which rules to use if more than 1 file is present in the directory, showing anyname as a hint.
+The rules file must be found in the folder Rules, that is a subfolder of the one that contains the program. Each rulefile must be named as: anyname.speak.txt
+Substitute anyname with a usefill name. The program at startup will ask which rules to use if more than 1 file is present in the directory, showing anyname as a hint. The last choice will be remembered.
 
 Specification of syntax to divide the input text in parts to pronounce separatly.
 Define each part as follows:
