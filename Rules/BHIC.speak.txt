@@ -1,4 +1,4 @@
--lang nl,verbose
+-lang nl 
 x 'TAB' actNumber 'TAB' actDateDay '-' actDateMonth '-' x 'TAB' 
 childLastname ',' childFirstname 'TAB' childBirthDay '-' childBirthMonth '-' x 'TAB' childSex 'TAB'  
 fatherLastname ','/'.' fatherFirstname 'TAB'  
